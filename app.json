@@ -1,0 +1,12 @@
+{
+  "name": "done-with-it",
+  "displayName": "done-with-it",
+  "expo": {
+    "name": "done-with-it",
+    "slug": "done-with-it",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
