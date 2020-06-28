@@ -1,8 +1,10 @@
 {
   "name": "done-with-it",
   "displayName": "done-with-it",
+  "orientation": "portrait",
   "expo": {
     "name": "done-with-it",
+
     "slug": "done-with-it",
     "version": "1.0.0",
     "assetBundlePatterns": [
