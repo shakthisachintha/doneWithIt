@@ -1,21 +1,21 @@
 import React from 'react'
 import { View, Text, ImageBackground, StyleSheet, Image } from 'react-native';
 
+import colors from '../config/colors';
+import AppButton from '../components/AppButton';
 
 const WelcomScreen = () => {
     return (
-        <ImageBackground style={styles.background} source={require('../assets/images/image.jpg')}>
+        <ImageBackground blurRadius={2} style={styles.background} source={require('../assets/images/image.jpg')}>
 
             <View style={styles.logoContainer}>
                 <Image style={styles.logo} source={require('../assets/images/logo.png')} />
                 <Text style={styles.logoText}>Sell what we don't need</Text>
             </View>
 
-            <View style={styles.loginButton}>
-
-            </View>
-            <View style={styles.registerButton}>
-
+            <View style={styles.btnContainer}>
+                <AppButton title="Login"></AppButton>
+                <AppButton title="Register" color="secondary"></AppButton>
             </View>
         </ImageBackground>
     )
@@ -29,16 +29,20 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
+    btnContainer: {
+        padding: 20,
+        width: '100%'
+    },
     loginButton: {
         width: '100%',
         height: 50,
-        backgroundColor: 'tomato'
+        backgroundColor: colors.primary
     },
     logoText: {
-        color: 'white',
+        color: colors.white,
         fontWeight: 'bold',
         fontSize: 18,
-        textShadowColor: 'white'
+        textTransform: "capitalize"
     },
     logoContainer: {
         position: 'absolute',
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     registerButton: {
         width: '100%',
         height: 50,
-        backgroundColor: '#4ecdc4'
+        backgroundColor: colors.secondary
     },
     logo: {
         width: 150,
