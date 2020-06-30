@@ -1,16 +1,36 @@
-import React from 'react'
-import { StyleSheet, Text, View, TextInput, AppRegistry } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, View, TouchableWithoutFeedback, Modal, Button, FlatList } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import defaultStyles from '../config/styles';
 import AppText from './AppText';
+import { TouchableNativeFeedback } from 'react-native-gesture-handler';
+import PickerItems from './PickerItems';
 
-const AppPicker = ({ icon, placeholder, ...otherProps }) => {
+const AppPicker = ({ icon, items, onSelectItem, placeholder, selectedItem }) => {
+    const [modalVisiblity, setModalVisiblity] = useState(false)
     return (
-        <View style={styles.container}>
-            {icon && <Icon style={styles.icon} size={25} color={defaultStyles.darkGray} name={icon} />}
-            <AppText style={styles.text}>Category</AppText>
-            <Icon size={25} color={defaultStyles.darkGray} name="chevron-down" />
-        </View>
+        <>
+            <TouchableNativeFeedback onPress={() => { setModalVisiblity(true) }}>
+                <View style={styles.container}>
+                    {icon && <Icon style={styles.icon} size={25} color={defaultStyles.darkGray} name={icon} />}
+                    <AppText style={styles.text}>{selectedItem ? selectedItem.label : placeholder}</AppText>
+                    <Icon size={25} color={defaultStyles.darkGray} name="chevron-down" />
+                </View>
+            </TouchableNativeFeedback>
+            <Modal visible={modalVisiblity} animationType="fade">
+                <Button title="Close" onPress={() => setModalVisiblity(false)} />
+                <FlatList
+                    data={items}
+                    keyExtractor={item => item.value.toString()}
+                    renderItem={({ item }) => <PickerItems
+                        label={item.label}
+                        onPress={() => {
+                            setModalVisiblity(false);
+                            onSelectItem(item);
+                        }} />}
+                />
+            </Modal>
+        </>
     )
 }
 

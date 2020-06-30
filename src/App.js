@@ -5,19 +5,23 @@ import colors from './config/colors';
 
 import AppTextInput from './components/AppTextInput';
 import AppPicker from './components/AppPicker';
+import LoginScreen from './screens/LoginScreen';
 
 
 
 export default function App() {
 
-  const [firstName, setFirstName] = useState('');
-  const [isNew, setIsNew] = useState(false);
+  const categories = [
+    { label: "Furniture", value: 1 },
+    { label: "Clothing", value: 2 },
+    { label: "Cameras", value: 3 },
+  ]
 
+  const [category, setCategory] = useState();
 
   return (
     <View style={styles.container}>
-      <AppPicker icon="apps" placeholder="Category" />
-      <AppTextInput placeholder="Email" icon="email" />
+      <LoginScreen></LoginScreen>
     </View>
 
   );
