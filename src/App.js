@@ -1,22 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, View, SafeAreaView, Alert, Button, Platform, ImageBackground, Text } from 'react-native';
-import { useDimensions, useDeviceOrientation } from '@react-native-community/hooks';
-import WelcomScreen from './screens/WelcomScreen';
-import ViewImage from './screens/ViewImage';
+import React, { useState } from 'react';
+import { StyleSheet, View, Switch } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import colors from './config/colors';
 
-import AppText from './components/AppText';
-import AppButton from './components/AppButton';
-import ShopScreen from './screens/ShopScreen';
+import AppTextInput from './components/AppTextInput';
+import AppPicker from './components/AppPicker';
+
 
 
 export default function App() {
 
+  const [firstName, setFirstName] = useState('');
+  const [isNew, setIsNew] = useState(false);
+
 
   return (
-    <ShopScreen></ShopScreen>
+    <View style={styles.container}>
+      <AppPicker icon="apps" placeholder="Category" />
+      <AppTextInput placeholder="Email" icon="email" />
+    </View>
+
   );
 }
 
@@ -26,9 +29,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: "center",
-    alignItems: 'center',
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    backgroundColor: colors.gray,
+    // paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
 });
