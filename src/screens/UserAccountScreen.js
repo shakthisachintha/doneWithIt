@@ -4,7 +4,7 @@ import UserCard from '../components/UserCard'
 import colors from '../config/colors'
 import AppIcon from '../components/AppIcon'
 
-const UserAccountScreen = ({ name, email, image }) => {
+const UserAccountScreen = ({ name, email, image, navigation }) => {
     return (
         <View>
             <View style={styles.container}>
@@ -16,7 +16,7 @@ const UserAccountScreen = ({ name, email, image }) => {
 
             <View style={styles.container}>
                 <UserCard title="My Listings" IconComponent={<AppIcon name="format-list-bulleted-type" backgroundColor={colors.secondary} />} />
-                <UserCard title="My Messages" IconComponent={<AppIcon name="forum-outline" backgroundColor={colors.primary} />} />
+                <UserCard onPress={() => navigation.navigate('Messages')} title="My Messages" IconComponent={<AppIcon name="forum-outline" backgroundColor={colors.primary} />} />
                 <UserCard style={{ marginVertical: 25 }} title="Logout" IconComponent={<AppIcon name="logout" backgroundColor={'#F5F529'} />} />
             </View>
         </View>

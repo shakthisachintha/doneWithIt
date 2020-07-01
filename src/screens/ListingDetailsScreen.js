@@ -4,13 +4,14 @@ import colors from '../config/colors'
 import AppText from '../components/AppText'
 import UserCard from '../components/UserCard'
 
-const ListingDetailsScreen = ({ image, title, price }) => {
+const ListingDetailsScreen = ({ route }) => {
+    let { image, title, price } = route.params;
     return (
         <ScrollView style={styles.container}>
             <Image style={styles.image} source={{ uri: image }} />
             <View style={styles.detailesContainer}>
                 <AppText style={styles.title}>{title}</AppText>
-                <AppText style={styles.price}>{price}</AppText>
+                <AppText style={styles.price}>${price}</AppText>
             </View>
             <View style={styles.userCard}>
 

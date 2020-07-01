@@ -1,24 +1,26 @@
 import React from 'react'
-import { StyleSheet, View, Image, KeyboardAvoidingView, Keyboard, Platform } from 'react-native'
+import { StyleSheet, View, Image, KeyboardAvoidingView, Platform, Keyboard, ScrollView } from 'react-native'
 import colors from '../config/colors'
 import * as Yup from 'yup';
 
 import { AppForm, AppFormInput, SubmitButton } from '../components/forms';
-import { ScrollView } from 'react-native-gesture-handler';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 
 const vaidationShema = Yup.object().shape({
+    name: Yup.string().required().label("Name"),
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(4).label("Password")
 });
 
-const LoginScreen = () => {
+const RegisterScreen = () => {
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS == "ios" ? "padding" : "height"}
             style={styles.container}
             enabled
-            keyboardVerticalOffset={100}>
+            keyboardVerticalOffset={100}
+        >
 
             <ScrollView onPress={Keyboard.dismiss}>
                 <View style={styles.logoContainer}>
@@ -26,11 +28,20 @@ const LoginScreen = () => {
                 </View>
 
                 <AppForm
-                    initialValues={{ email: "", password: "" }}
+                    initialValues={{ email: "", password: "", name: "" }}
                     onSubmit={values => console.log(values)}
                     validationSchema={vaidationShema}
                 >
                     <View styles={styles.inputContainer}>
+                        <AppFormInput
+                            autoCapitalize="words"
+                            autoCorrect={false}
+                            backgroundColor={colors.gray}
+                            icon="account-circle"
+                            name="name"
+                            keyboadType="default"
+                            placeholder="Name" />
+
                         <AppFormInput
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -50,14 +61,14 @@ const LoginScreen = () => {
                             secureTextEntry
                         />
                     </View>
-                    <SubmitButton title="Login" />
+                    <SubmitButton title="Register" />
                 </AppForm>
             </ScrollView>
         </KeyboardAvoidingView>
     )
 }
 
-export default LoginScreen
+export default RegisterScreen
 
 const styles = StyleSheet.create({
     container: {

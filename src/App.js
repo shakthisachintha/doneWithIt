@@ -9,8 +9,11 @@ import * as Permissions from 'expo-permissions';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+
 import AuthNavigator from './navigation/AuthNavigator';
 import navigationTheme from './navigation/navigationTheme';
+import AppNavigator from './navigation/AppNavigator';
+import AccountNavigator from './navigation/AccountNavigator';
 
 
 export default function App() {
@@ -100,15 +103,16 @@ export default function App() {
         inactiveTintColor: "black"
       }}
     >
-      <Tab.Screen options={{ tabBarIcon: ({ size, color }) => <Icon size={size} color={color} name="home" /> }} name="Account" component={Account} />
+      <Tab.Screen options={{ tabBarIcon: ({ size, color }) => <Icon size={size} color={color} name="home" /> }} name="Account" component={AccountNavigator} />
       <Tab.Screen name="Feed" component={StackNavigator} />
     </Tab.Navigator>
   )
 
 
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <AuthNavigator />
+    <NavigationContainer>
+      {/* <AuthNavigator /> */}
+      <AppNavigator />
     </NavigationContainer>
 
     /* <View style={styles.container}>
