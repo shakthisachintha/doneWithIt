@@ -1,12 +1,10 @@
 import React from 'react'
 import { StyleSheet, View, Image } from 'react-native'
-import AppButton from '../components/AppButton'
 import colors from '../config/colors'
-import { Formik } from 'formik'
 import * as Yup from 'yup';
-import AppFormInput from '../components/forms/AppFormInput'
-import AppForm from '../components/forms/AppForm'
-import SubmitButton from '../components/forms/SubmitButton'
+
+import { AppForm, AppFormInput, SubmitButton } from '../components/forms';
+
 
 const vaidationShema = Yup.object().shape({
     email: Yup.string().required().email().label("Email"),

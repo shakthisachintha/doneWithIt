@@ -1,29 +1,29 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, TouchableWithoutFeedback, Modal, Button, FlatList } from 'react-native'
+import { StyleSheet, View, Modal, Button, TouchableWithoutFeedback, FlatList } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import defaultStyles from '../config/styles';
 import AppText from './AppText';
-import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 import PickerItems from './PickerItems';
 
-const AppPicker = ({ icon, items, onSelectItem, placeholder, selectedItem }) => {
+const AppPicker = ({ icon, items, numberOfColumns = 1, onSelectItem, placeholder, selectedItem, PickerItemComponent = PickerItems }) => {
     const [modalVisiblity, setModalVisiblity] = useState(false)
     return (
         <>
-            <TouchableNativeFeedback onPress={() => { setModalVisiblity(true) }}>
+            <TouchableWithoutFeedback onPress={() => { setModalVisiblity(true) }}>
                 <View style={styles.container}>
-                    {icon && <Icon style={styles.icon} size={25} color={defaultStyles.darkGray} name={icon} />}
+                    {icon && <Icon style={styles.icon} size={20} color={defaultStyles.darkGray} name={icon} />}
                     <AppText style={styles.text}>{selectedItem ? selectedItem.label : placeholder}</AppText>
                     <Icon size={25} color={defaultStyles.darkGray} name="chevron-down" />
                 </View>
-            </TouchableNativeFeedback>
+            </TouchableWithoutFeedback>
             <Modal visible={modalVisiblity} animationType="fade">
                 <Button title="Close" onPress={() => setModalVisiblity(false)} />
                 <FlatList
+                    numColumns={numberOfColumns}
                     data={items}
                     keyExtractor={item => item.value.toString()}
-                    renderItem={({ item }) => <PickerItems
-                        label={item.label}
+                    renderItem={({ item }) => <PickerItemComponent
+                        item={item}
                         onPress={() => {
                             setModalVisiblity(false);
                             onSelectItem(item);
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
     icon: {
-        marginRight: 10
+        marginRight: 10,
+        marginLeft: 4
     },
     text: {
         flex: 1

@@ -4,7 +4,7 @@ import { View, Text, ImageBackground, StyleSheet, Image } from 'react-native';
 import colors from '../config/colors';
 import AppButton from '../components/AppButton';
 
-const WelcomScreen = () => {
+const WelcomScreen = ({ navigation }) => {
     return (
         <ImageBackground blurRadius={2} style={styles.background} source={require('../assets/images/image.jpg')}>
 
@@ -14,8 +14,8 @@ const WelcomScreen = () => {
             </View>
 
             <View style={styles.btnContainer}>
-                <AppButton title="Login"></AppButton>
-                <AppButton title="Register" color="secondary"></AppButton>
+                <AppButton title="Login" onPress={() => navigation.navigate("Login")} color="primary"></AppButton>
+                <AppButton title="Register" onPress={() => navigation.navigate("Register")} color="secondary"></AppButton>
             </View>
         </ImageBackground>
     )
