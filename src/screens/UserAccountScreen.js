@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native'
 import UserCard from '../components/UserCard'
 import colors from '../config/colors'
 import AppIcon from '../components/AppIcon'
+import routes from '../navigation/routes'
 
 const UserAccountScreen = ({ name, email, image, navigation }) => {
     return (
@@ -16,7 +17,7 @@ const UserAccountScreen = ({ name, email, image, navigation }) => {
 
             <View style={styles.container}>
                 <UserCard title="My Listings" IconComponent={<AppIcon name="format-list-bulleted-type" backgroundColor={colors.secondary} />} />
-                <UserCard onPress={() => navigation.navigate('Messages')} title="My Messages" IconComponent={<AppIcon name="forum-outline" backgroundColor={colors.primary} />} />
+                <UserCard onPress={() => navigation.navigate(routes.MESSAGES)} title="My Messages" IconComponent={<AppIcon name="forum-outline" backgroundColor={colors.primary} />} />
                 <UserCard style={{ marginVertical: 25 }} title="Logout" IconComponent={<AppIcon name="logout" backgroundColor={'#F5F529'} />} />
             </View>
         </View>

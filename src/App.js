@@ -111,8 +111,8 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {/* <AuthNavigator /> */}
-      <AppNavigator />
+      <AuthNavigator />
+      {/* <AppNavigator /> */}
     </NavigationContainer>
 
     /* <View style={styles.container}>
